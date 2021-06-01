@@ -3,7 +3,34 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 5000;
 
-var birds = require('./birds')
+
+const members = [
+  {
+    id: 1,
+    name: 'John Doe',
+    email: 'john@gmail.com',
+    status: 'active'
+  },
+  {
+    id: 2,
+    name: 'Bob Williams',
+    email: 'bob@gmail.com',
+    status: 'inactive'
+  },
+  {
+    id: 3,
+    name: 'Shannon Jackson',
+    email: 'shannon@gmail.com',
+    status: 'active'
+  }
+];
+
+
+app.get('/api/members', (req, res) => {
+  res.json(members);
+});
+
+var birds = require('./birds');
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
