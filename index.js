@@ -4,16 +4,17 @@ const app = express();
 const port = process.env.PORT || 5000;
 const members = require('./Members');
 
+
+const logger = (req, res, next) => {
+  console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+  next();
+};
+
+
 // get all members: test with Postman
 app.get('/api/members', (req, res) => {
   res.json(members);
 });
-
-
-const logger = (req, res, next) => {
-  console.log('Hello');
-  next();
-};
 
 // init middleware
 app.use(logger);
