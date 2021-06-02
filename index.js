@@ -6,7 +6,9 @@ const port = process.env.PORT || 5000;
 
 const logger = require('./middleware/logger')
 
-
+// body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // init middleware
 app.use(logger);
