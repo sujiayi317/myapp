@@ -2,29 +2,11 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 5000;
-const members = require('./Members');
+
 
 const logger = require('./middleware/logger')
 
-// get all members: test with Postman
-app.get('/api/members', (req, res) => {
-  res.json(members);
-});
 
-// get a single member
-app.get('/api/members/:id', (req, res) => {
-  // res.send(req.params.id);
-
-  const found = members.some(member => member.id === parseInt(req.params.id));
-
-  if (found) {
-    res.json(members.filter(member => member.id === parseInt(req.params.id)));
-  } else {
-    res.status(400).json({ msg: `No member with the id of ${req.params.id}` });
-  }
-  
-
-})
 
 // init middleware
 app.use(logger);
@@ -51,5 +33,5 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
 
-
+app.use('/api/members', require('./routes/api/members'));
 
