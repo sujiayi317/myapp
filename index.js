@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const exphbs =  require("express-handlebars");
+const members = require('./Members');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -17,7 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // homepage route
 app.get('/', (req, res) => res.render('index', {
-  title: 'Member App'
+  title: 'Member App',
+  members
 }))
 
 // init middleware
