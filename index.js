@@ -47,5 +47,6 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
 
+// api/members routes
 app.use('/api/members', require('./routes/api/members'));
 
